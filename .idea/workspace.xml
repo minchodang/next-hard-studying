@@ -43,6 +43,7 @@
                     <option name="lastUsedInstant" value="1662177839" />
                   </RecentBranch>
                   <RecentBranch>
+
                     <option name="branchName" value="feature/dynamicPageRouting" />
                     <option name="lastUsedInstant" value="1661678906" />
                   </RecentBranch>
@@ -138,6 +139,7 @@
       </list>
     </recent_temporary>
   </component>
+
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="디폴트 작업">
