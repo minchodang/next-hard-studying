@@ -21,7 +21,6 @@ const ClientPage = () => {
                     </li>
                 ))}
             </ul>
-        </div>
     );
 };
 
