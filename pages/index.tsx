@@ -1,9 +1,5 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
-import Link from 'next/link';
-import { Key } from 'react';
+import * as fs from 'fs/promises';
+import path from 'path';
 
 interface StaticProps {
     products: [{ id: string; title: string }];
@@ -22,10 +18,15 @@ const Home = (props: StaticProps) => {
 };
 
 export async function getStaticProps() {
+    console.log('re-generating');
+    const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json');
+    const jsonData = await fs.readFile(filePath);
+    const data = JSON.parse(jsonData.toString());
     return {
         props: {
-            products: [{ id: 'p1', title: 'Product1' }],
+            products: data.products,
         },
+        revalidate: 10,
     };
 }
 

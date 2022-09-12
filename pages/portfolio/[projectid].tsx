@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-export const PortfolioProjectPage = () => {
+const PortfolioProjectPage = () => {
     const router = useRouter();
 
     return (
@@ -9,3 +9,5 @@ export const PortfolioProjectPage = () => {
         </div>
     );
 };
+
+export default PortfolioProjectPage;
