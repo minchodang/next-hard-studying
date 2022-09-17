@@ -9,7 +9,7 @@ interface ProductType {
 }
 
 function ProductDetailPage(props: { loadedProduct: ProductType }) {
-    const { loadedProduct } = props;
+    const {loadedProduct} = props;
     console.log(loadedProduct, '이런 ');
 
     if (!loadedProduct) {
@@ -32,13 +32,18 @@ async function getData() {
 }
 
 export async function getStaticProps(context: { params: any }) {
-    const { params } = context;
+    const {params} = context;
 
     const productId = params.pid;
 
     const data = await getData();
 
     const product = data.products.find((product: ProductType) => product.id === productId);
+
+    if (!product) {
+        return {notFound: true}
+    }
+
 
     return {
         props: {
@@ -51,11 +56,11 @@ export async function getStaticPaths() {
     const data = await getData();
 
     const ids = data.products.map((product: ProductType) => product.id);
-    const pathWithParams = ids.map((id: string) => ({ params: { pid: id } }));
+    const pathWithParams = ids.map((id: string) => ({params: {pid: id}}));
 
     return {
         paths: pathWithParams,
-        fallback: false,
+        fallback: true,
     };
 }
 
