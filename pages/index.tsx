@@ -39,7 +39,7 @@ export async function getStaticProps() {
             notFound: true,
         };
     }
-    
+
     return {
         props: {
             products: data.products,
