@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { Fragment } from 'react';
+import Head from 'next/head';
 
 interface ProductType {
     id: string;
@@ -9,15 +10,28 @@ interface ProductType {
 }
 
 function ProductDetailPage(props: { loadedProduct: ProductType }) {
-    const {loadedProduct} = props;
+    const { loadedProduct } = props;
     console.log(loadedProduct, '이런 ');
 
+    const pageHeadData = (
+        <Head>
+            <title>next-practices</title>
+            <meta name={'description'} content={`find a lot of great money/${loadedProduct.id}`} />
+        </Head>
+    );
     if (!loadedProduct) {
-        return <p>Loading...</p>;
+        return (
+            <>
+                {pageHeadData}
+                <p>Loading...</p>
+            </>
+        );
     }
 
     return (
         <Fragment>
+            {pageHeadData}
+
             <h1>{loadedProduct.title}</h1>
             <p>{loadedProduct.description}</p>
         </Fragment>
@@ -32,7 +46,7 @@ async function getData() {
 }
 
 export async function getStaticProps(context: { params: any }) {
-    const {params} = context;
+    const { params } = context;
 
     const productId = params.pid;
 
@@ -41,9 +55,8 @@ export async function getStaticProps(context: { params: any }) {
     const product = data.products.find((product: ProductType) => product.id === productId);
 
     if (!product) {
-        return {notFound: true}
+        return { notFound: true };
     }
-
 
     return {
         props: {
@@ -56,7 +69,7 @@ export async function getStaticPaths() {
     const data = await getData();
 
     const ids = data.products.map((product: ProductType) => product.id);
-    const pathWithParams = ids.map((id: string) => ({params: {pid: id}}));
+    const pathWithParams = ids.map((id: string) => ({ params: { pid: id } }));
 
     return {
         paths: pathWithParams,
