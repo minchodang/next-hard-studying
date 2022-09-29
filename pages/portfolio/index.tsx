@@ -1,8 +1,16 @@
+import Head from 'next/head';
+
 const PortfolioPage = () => {
     return (
-        <div>
-            <h1>The Portfolio Page</h1>
-        </div>
+        <>
+            <Head>
+                <title>portfolioPage</title>
+                <meta name={'description'} content={'find a lot of great money'} />
+            </Head>
+            <div>
+                <h1>The Portfolio Page</h1>
+            </div>
+        </>
     );
 };
 

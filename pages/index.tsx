@@ -1,22 +1,29 @@
 import * as fs from 'fs/promises';
 import path from 'path';
 import Link from 'next/link';
+import Head from 'next/head';
 
 interface StaticProps {
     products: [{ id: string; title: string; description: string }];
 }
 
 const Home = (props: StaticProps) => {
-    const {products} = props;
+    const { products } = props;
 
     return (
-        <ul>
-            {products.map((product) => (
-                <li key={product.id}>
-                    <Link href={`/products/${product.id}`}>{product.title}</Link>
-                </li>
-            ))}
-        </ul>
+        <>
+            <Head>
+                <title>next-practices</title>
+                <meta name={'description'} content={'find a lot of great money'} />
+            </Head>
+            <ul>
+                {products.map((product) => (
+                    <li key={product.id}>
+                        <Link href={`/products/${product.id}`}>{product.title}</Link>
+                    </li>
+                ))}
+            </ul>
+        </>
     );
 };
 
